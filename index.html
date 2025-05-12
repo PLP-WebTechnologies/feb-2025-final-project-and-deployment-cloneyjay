@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find student accommodation near universities in Kenya">
+    <meta name="theme-color" content="#FF6B6B">
+    <title>StudyStay - Student Accommodation Finder</title>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="index.html">
+                    <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32">
+                        <path d="M16 0L32 16L16 32L0 16L16 0Z" fill="currentColor"/>
+                    </svg>
+                    <span class="logo-text">StudyStay</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Listings</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Find Your Perfect Student Home</h1>
+                <p class="hero__subtitle">Discover comfortable and affordable accommodation near your university</p>
+                <a href="listings.html" class="cta-button">Browse Listings</a>
+            </div>
+        </section>
+
+        <section class="stats-section fade-in">
+            <div class="container">
+                <h2 class="section-title slide-up">List Your Property</h2>
+                <p class="section-subtitle slide-up">Reach thousands of students daily.</p>
+                
+                <div class="stats-container">
+                    <div class="stat-item scale-in">
+                        <h3 class="stat-number" data-value="1500">1500</h3>
+                        <p class="stat-label">Profile Views / Week</p>
+                    </div>
+                    <div class="stat-item scale-in">
+                        <h3 class="stat-number" data-value="85">85</h3>
+                        <p class="stat-label">Bookings / Month</p>
+                    </div>
+                    <div class="stat-item scale-in">
+                        <h3 class="stat-number" data-value="95">95</h3>
+                        <p class="stat-label">Occupancy Rate</p>
+                    </div>
+                </div>
+
+                <div class="cta-container slide-up">
+                    <a href="#" class="cta-button">Become a Partner</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <div id="map"></div>
+            <div class="map-controls">
+                <input type="text" id="location-search" placeholder="Search location...">
+            </div>
+        </section>
+
+        <section class="listings">
+            <h2>Featured Listings</h2>
+            <div class="listings__carousel"></div>
+            <div class="view-all-container">
+                <a href="listings.html" class="view-all-btn">View All Listings</a>
+            </div>
+        </section>
+
+        <section class="reviews" id="about">
+            <h2>What Students Say</h2>
+            <div class="reviews__grid"></div>
+        </section>
+
+        <section class="dashboard-preview">
+            <h2>Why Choose StudyStay?</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i data-feather="home"></i>
+                    <h3>500+</h3>
+                    <p>Listed Properties</p>
+                </div>
+                <div class="stat-card">
+                    <i data-feather="users"></i>
+                    <h3>1000+</h3>
+                    <p>Happy Students</p>
+                </div>
+                <div class="stat-card">
+                    <i data-feather="map-pin"></i>
+                    <h3>10+</h3>
+                    <p>University Areas</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="footer__content">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="footer__logo">
+                        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32">
+                            <path d="M16 0L32 16L16 32L0 16L16 0Z" fill="currentColor"/>
+                        </svg>
+                        <span class="logo-text">StudyStay</span>
+                    </a>
+                    <p class="footer__description">Find comfortable and affordable student accommodation near your university in Kenya.</p>
+                </div>
+                
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="listings.html">Browse Listings</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__links">
+                    <h4>For Students</h4>
+                    <ul>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Student Guide</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i data-feather="mail"></i> info@studystay.com</li>
+                        <li><i data-feather="phone"></i> +254 700 000000</li>
+                        <li><i data-feather="map-pin"></i> Nairobi, Kenya</li>
+                    </ul>
+                    <div class="footer__social">
+                        <a href="#" class="social-icon" aria-label="Facebook"><i data-feather="facebook"></i></a>
+                        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+                        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2025 StudyStay. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top">
+        <i data-feather="arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your saved listings - StudyStay">
+    <meta name="theme-color" content="#FF6B6B">
+    <title>Watchlist | StudyStay</title>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/listings.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="index.html">
+                    <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32">
+                        <path d="M16 0L32 16L16 32L0 16L16 0Z" fill="currentColor"/>
+                    </svg>
+                    <span class="logo-text">StudyStay</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Listings</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="watchlist-page">
+        <h1>Your Watchlist</h1>
+        <div class="listings-grid" id="watchlist-grid">
+            <!-- Watchlist items will be loaded here -->
+        </div>
+        <div class="empty-watchlist" id="empty-watchlist" style="display: none;">
+            <i data-feather="heart"></i>
+            <h2>Your watchlist is empty</h2>
+            <p>Save your favorite listings to find them easily later.</p>
+            <a href="listings.html" class="cta-button">Browse Listings</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Same footer content as other pages -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Load watchlist items
+        function loadWatchlistItems() {
+            const grid = document.getElementById('watchlist-grid');
+            const emptyState = document.getElementById('empty-watchlist');
+            
+            if (!auth.isLoggedIn) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            if (!auth.watchlist.length) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+
+            grid.innerHTML = '';
+            auth.watchlist.forEach(listingId => {
+                const listing = listings.find(l => l.id === listingId);
+                if (listing) {
+                    const card = document.createElement('div');
+                    card.className = 'listing-card';
+                    card.innerHTML = `
+                        <div class="listing-image">
+                            <img src="${listing.image}" alt="${listing.title}">
+                            <span class="listing-badge">${listing.bedrooms} Bedroom</span>
+                            <button class="watchlist-btn active" data-listing-id="${listing.id}">
+                                <i data-feather="heart"></i>
+                            </button>
+                        </div>
+                        <div class="listing-content">
+                            <div class="listing-price">
+                                KSH ${listing.price.toLocaleString()} <span>/${listing.priceUnit}</span>
+                            </div>
+                            <h3>${listing.title}</h3>
+                            <div class="listing-location">
+                                <i data-feather="map-pin"></i>
+                                ${listing.location}
+                            </div>
+                            <div class="listing-amenities">
+                                ${listing.amenities.slice(0, 3).map(amenity => `
+                                    <span class="amenity-item">
+                                        <i data-feather="${amenity.icon}"></i>
+                                        ${amenity.name}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+
+                    // Add click event to view listing details
+                    card.addEventListener('click', (e) => {
+                        if (!e.target.closest('.watchlist-btn')) {
+                            window.location.href = `listing-detail.html?id=${listing.id}`;
+                        }
+                    });
+
+                    const watchlistBtn = card.querySelector('.watchlist-btn');
+                    watchlistBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        auth.toggleWatchlist(listing.id);
+                        loadWatchlistItems(); // Reload the list
+                    });
+
+                    grid.appendChild(card);
+                }
+            });
+
+            // Reinitialize Feather Icons for the new content
+            feather.replace();
+        }
+
+        // Load watchlist when page loads
+        document.addEventListener('DOMContentLoaded', loadWatchlistItems);
+    </script>
+</body>
+</html>

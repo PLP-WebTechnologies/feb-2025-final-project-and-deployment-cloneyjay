@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View detailed information about student accommodation">
+    <meta name="theme-color" content="#FF6B6B">
+    <title>Listing Details | StudyStay</title>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/listing-detail.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <a href="index.html">
+                    <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32">
+                        <path d="M16 0L32 16L16 32L0 16L16 0Z" fill="currentColor"/>
+                    </svg>
+                    <span class="logo-text">StudyStay</span>
+                </a>
+            </div>
+            <nav class="header__nav">
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Listings</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#location">Location</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Listing Detail -->
+    <main class="listing-detail">
+        <div class="listing-detail__container">
+            <div class="listing-gallery">
+                <!-- Gallery images will be inserted here by JavaScript -->
+                <div class="main-image">
+                    <!-- Main image will be inserted here -->
+                </div>
+                <div class="thumbnail-grid">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
+            </div>
+
+            <div class="listing-info">
+                <div class="listing-header">
+                    <h1 class="listing-title" id="listing-title">Loading...</h1>
+                    <div class="listing-meta">
+                        <div class="location">
+                            <span id="listing-location">Loading...</span>
+                        </div>
+                        <div class="price">
+                            <span id="listing-price">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="listing-description" id="description">
+                    <h2>Description</h2>
+                    <p id="listing-description">Loading...</p>
+                </section>
+
+                <section class="listing-amenities-full" id="amenities">
+                    <h2>Amenities</h2>
+                    <div class="amenities-grid" id="amenities-list">
+                        <!-- Amenities will be inserted here by JavaScript -->
+                    </div>
+                </section>
+
+                <section class="listing-map" id="location">
+                    <h2>Location</h2>
+                    <!-- <div id="map" style="height: 400px;"></div> -->
+                </section>
+
+                <section class="listing-reviews">
+                    <div class="reviews-header">
+                        <h2>Reviews</h2>
+                        <button class="add-review-btn">Write a Review</button>
+                    </div>
+                    <div id="reviews-container">
+                        <!-- Reviews will be inserted here -->
+                    </div>
+                </section>
+            </div>
+
+            <aside class="listing-sidebar">
+                <div class="contact-card">
+                    <h3>Contact Landlord</h3>
+                    <form class="contact-form" id="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="footer__logo">
+                        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32">
+                            <path d="M16 0L32 16L16 32L0 16L16 0Z" fill="currentColor"/>
+                        </svg>
+                        <span class="logo-text">StudyStay</span>
+                    </a>
+                    <p class="footer__description">Find comfortable and affordable student accommodation near your university in Kenya.</p>
+                </div>
+                
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="listings.html">Browse Listings</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__links">
+                    <h4>For Students</h4>
+                    <ul>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Student Guide</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i data-feather="mail"></i> info@studystay.com</li>
+                        <li><i data-feather="phone"></i> +254 700 000000</li>
+                        <li><i data-feather="map-pin"></i> Nairobi, Kenya</li>
+                    </ul>
+                    <div class="footer__social">
+                        <a href="#" class="social-icon" aria-label="Facebook"><i data-feather="facebook"></i></a>
+                        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+                        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2025 StudyStay. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top">
+        <i data-feather="arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/listing-detail.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
