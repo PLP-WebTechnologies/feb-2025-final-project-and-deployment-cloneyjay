@@ -3,4 +3,4 @@ Allow: /
 Disallow: /404.html
 Disallow: /500.html
 
-Sitemap: https://studystay.netlify.app/sitemap.xml
+Sitemap: https://studystay.vercel.app/sitemap.xml

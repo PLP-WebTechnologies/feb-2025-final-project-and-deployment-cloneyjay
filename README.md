@@ -1,32 +1,8 @@
-# Final Project and Deployment
-
-## Objectives
-Build a fully functional web application.
-Apply HTML, CSS, and JavaScript concepts learned.
-Deploy the project using GitHub Pages, Netlify, or Vercel.
-
-## Instructions
-Choose one of the following project ideas:
-Blog Website: Implement a multi-page site with navigation.
-Ecommerce Website: Implement a multi-page site with navigation.
-
->[!NOTE]
-> - Include at least:
-> - A responsive design.
-> - JavaScript interactivity.
-> - A deployment link.
-
-## Tasks
-
-Create a well-structured HTML5 document.
-Use at least 5 different HTML elements.
-Ensure semantic correctness.
-
-Good luck and happy coding! 🚀💻
-
 # StudyStay - Student Hostel Finder
 
 A web application to help students find suitable accommodation near their universities in Kenya.
+
+visit https://studystay.vercel.app/ to see the final product
 
 ## Features
 
@@ -56,8 +32,8 @@ A web application to help students find suitable accommodation near their univer
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/studystay.git
-cd studystay
+git clone https://github.com/PLP-WebTechnologies/feb-2025-final-project-and-deployment-cloneyjay.git
+cd into the folder
 ```
 
 2. Open index.html in your browser
@@ -164,7 +140,7 @@ MIT License - feel free to use this project for learning or as a base for your o
 
 ## Authors
 
-- Your Name - Initial work
+- Your Name - cloneyjay
 
 ## Acknowledgments
 
